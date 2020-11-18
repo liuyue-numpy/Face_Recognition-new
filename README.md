@@ -91,7 +91,7 @@ pymysql
 
 ##5、项目API服务
   ```
- Front_and_Display.py 服务接口为http://IP:5000（其中，IP为自己的IP地址），通过调用摄像头进行人脸识别，
-                      查询oracle测试库中对应人脸信息
-
+ Front_and_Display.py 服务接口为http://IP:5000（其中，IP为自己的IP地址），通过调用摄像头进行人脸识别，返回oracle测试库中对应人脸信息
+ Front_and_Display_image.py 通过在html中表单上传的方式，上传.jpg格式图片进行人脸识别，返回oracle测试库中对应人脸信息
+ ```
 
