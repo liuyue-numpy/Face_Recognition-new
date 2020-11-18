@@ -1,13 +1,16 @@
-# Face_Recognition-new
-#人脸识别项目 face-recognition
+# 人脸识别项目  Face_Recognition-new
 
+
+```
 ##项目结构介绍
 ###config：OpenCV的分类器配置文件
 ###work_space/save:预训练模型
 ###data/Facebank 提供要检测的面部图像
+```
 
-
+```
 ##模块介绍
+```
 ###take_pic.py:使用摄像头保存图片
 ###mtcnn.py:mtcnn 三级联网络结构
 ###model.py: 定义卷积，优化器，损失函数等
@@ -18,8 +21,9 @@
 ###Front_and_Display_image.py 连接oracle测试库，通过在html中表单上传的方式，上传.jpg格式图片进行人脸识别，在HTTp中通过post请求返回对应人脸信息
 ###testMysql.py 连接mysql数据库，通过在html中表单上传的方式，上传.jpg格式图片进行人脸识别，在HTTp中通过post请求返回对应人脸信息
 
-
+```
 ##项目依赖的第三方模块
+```
 ###torch==0.4.0
 numpy==1.14.5
 matplotlib==2.1.2
@@ -36,7 +40,9 @@ tensorboardX==1.2
 torchvision==0.2.1
 Flask
 
+```
 ##项目使用说明
+```
 
 ##预训练模型下载  
 链接：https://pan.baidu.com/s/1rCtHNJsZWaAF_H0UspdKWQ 
