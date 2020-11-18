@@ -54,16 +54,16 @@ pymysql
 提取码：8csj 
 复制这段内容后打开百度网盘手机App，操作更方便哦
 下载成功后放入Face_Recognition-new\Face_Recognition\work_space\save目录下，程序即可正常运行
-```
-```
+
+
 +  拍照可以，运行
 
   python take_pic.py -n name
 
   摄像头启动后，输入法记得调整成英文输入状态，然后点击一下q就会自动照一张相存储到data/Facebank 下面的指定文件夹里面，按T退出拍照
   如果相机中出现1个以上的人，则只会拍摄1张可能性最高的人脸
-    ```
-    ```
+    
+    
 + 或者可以将任何预先存在的照片放入facebank目录中，文件结构如下：
 
 - facebank/
@@ -77,8 +77,8 @@ pymysql
              ...
          .....
    如果目录中出现1张以上图片，则将计算平均嵌入
-  ```
-  ```
+  
+  
 +开始测试
 
   python face_verify.py
