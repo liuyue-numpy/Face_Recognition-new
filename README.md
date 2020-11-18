@@ -1,15 +1,16 @@
 # 人脸识别项目  Face_Recognition-new
 
 
+
+##1、项目结构介绍
 ```
-##项目结构介绍
 ###config：OpenCV的分类器配置文件
 ###work_space/save:预训练模型
 ###data/Facebank 提供要检测的面部图像
 ```
 
-```
-##模块介绍
+
+##2、模块介绍
 ```
 ###take_pic.py:使用摄像头保存图片
 ###mtcnn.py:mtcnn 三级联网络结构
@@ -20,9 +21,10 @@
 ###Front_and_Display.py 连接oracle测试库，通过调用摄像头进行人脸识别，在HTTP中通过get请求返回对应人脸信息
 ###Front_and_Display_image.py 连接oracle测试库，通过在html中表单上传的方式，上传.jpg格式图片进行人脸识别，在HTTp中通过post请求返回对应人脸信息
 ###testMysql.py 连接mysql数据库，通过在html中表单上传的方式，上传.jpg格式图片进行人脸识别，在HTTp中通过post请求返回对应人脸信息
-
 ```
-##项目依赖的第三方模块
+
+
+##3、项目依赖的第三方模块
 ```
 ###torch==0.4.0
 numpy==1.14.5
@@ -39,9 +41,12 @@ scikit_learn==0.19.2
 tensorboardX==1.2
 torchvision==0.2.1
 Flask
-
+cx_Oracle
+pymysql
 ```
-##项目使用说明
+
+
+##4、项目使用说明
 ```
 
 ##预训练模型下载  
@@ -49,16 +54,18 @@ Flask
 提取码：8csj 
 复制这段内容后打开百度网盘手机App，操作更方便哦
 下载成功后放入Face_Recognition-new\Face_Recognition\work_space\save目录下，程序即可正常运行
-
-
-+  拍照可以，运行
 ```
+```
++  拍照可以，运行
+
   python take_pic.py -n name
-  ```
+
   摄像头启动后，输入法记得调整成英文输入状态，然后点击一下q就会自动照一张相存储到data/Facebank 下面的指定文件夹里面，按T退出拍照
   如果相机中出现1个以上的人，则只会拍摄1张可能性最高的人脸
+    ```
+    ```
 + 或者可以将任何预先存在的照片放入facebank目录中，文件结构如下：
-```
+
 - facebank/
          name1/
              photo1.jpg
@@ -70,21 +77,21 @@ Flask
              ...
          .....
    如果目录中出现1张以上图片，则将计算平均嵌入
-
-+开始测试
- ```
-  python face_verify.py
   ```
+  ```
++开始测试
+
+  python face_verify.py
+
 就可以启动人脸识别项目的Demo了，这个模块会启动电脑的摄像头来实时地进行人脸识别。
 - - -
+  ```
 
 
 
+##5、项目API服务
+  ```
+ Front_and_Display.py 服务接口为http://IP:5000（其中，IP为自己的IP地址），通过调用摄像头进行人脸识别，
+                      查询oracle测试库中对应人脸信息
 
-##项目API服务结果截图
-+ Web服务接口为：http://IP:5000（其中，IP为自己的IP地址），结果如下：
-![人脸识别程序正常启动！]
-+ Web服务接口为：http://IP:5000 /detect?img=test.jpg（其中，IP为自己的IP地址,test为待识别的图片），结果如下：
-![识别为：]
-or
-![抱歉，未识别出该人!]
+
