@@ -1,5 +1,6 @@
 from datetime import datetime
-from PIL import Image
+
+import numpy
 import numpy as np
 import matplotlib.pyplot as plt
 plt.switch_backend('agg')
@@ -9,9 +10,10 @@ import sys
 sys.path.append("..")
 from data.data_pipe import de_preprocess
 import torch
-from .model import l2_norm
+from Model.model import l2_norm
 import pdb
 import cv2
+from PIL import Image, ImageDraw, ImageFont
 
 # 定义一个分离参数方法
 def separate_bn_paras(modules):
@@ -35,7 +37,7 @@ def separate_bn_paras(modules):
 def prepare_facebank(conf, model, mtcnn, tta = True):
     model.eval()
     embeddings =[]
-    names = ['Unknown']
+    names = ['unknown']
     for path in conf.facebank_path.iterdir():
         if path.is_file():
             continue
@@ -145,14 +147,27 @@ def gen_plot(fpr, tpr):
     plt.close()
     return buf
 
+# 解决cv2.putText绘制中文乱码
+def cv2ImgAddText(frame, text, left, top, textColor=(0, 0, 255), textSize=20):
+    if isinstance(frame, numpy.ndarray):  # 判断是否OpenCV图片类型
+        frame = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
+    # 创建一个可以在给定图像上绘图的对象
+    draw = ImageDraw.Draw(frame)
+    # 字体的格式
+    fontStyle = ImageFont.truetype("font/simsun.ttc", textSize, encoding="utf-8")
+    # 绘制文本
+    draw.text((left, top), text, textColor, font=fontStyle)
+    # 转换回OpenCV格式
+    frame= cv2.cvtColor(numpy.asarray(frame), cv2.COLOR_RGB2BGR)
+    return frame
+
+
 def draw_box_name(bbox,name,frame):
     frame = cv2.rectangle(frame,(bbox[0],bbox[1]),(bbox[2],bbox[3]),(0,0,255),6)
-    frame = cv2.putText(frame,
+    frame = cv2ImgAddText(frame,
                     name,
-                    (bbox[0],bbox[1]), 
-                    cv2.FONT_HERSHEY_SIMPLEX, 
-                    2,
+                    bbox[0],
+                    bbox[1],
                     (0,255,0),
-                    3,
-                    cv2.LINE_AA)
+                    50)
     return frame

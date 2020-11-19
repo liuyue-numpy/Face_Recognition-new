@@ -17,7 +17,7 @@ if __name__ == '__main__':
     parser.add_argument('-th','--threshold',help='threshold to decide identical faces',default=1.54, type=float)
     parser.add_argument("-u", "--update", default=True,help="whether perform update the facebank",action="store_true")
     parser.add_argument("-tta", "--tta",help="whether testCode time augmentation",action="store_true")
-    parser.add_argument("-c", "--score", default=True,help="whether show the confidence score",action="store_true")
+    parser.add_argument("-c", "--score", default=False,help="whether show the confidence score",action="store_true")
     args = parser.parse_args()
 
     conf = get_config(False)

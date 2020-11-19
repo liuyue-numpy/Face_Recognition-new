@@ -102,21 +102,8 @@ def predict():
 
             cv2.imshow('face Capture', frame)
 
-            """打开数据库"""
-            #
-            db = cx_Oracle.connect('fgos', 'bjrdfgos', '172.20.19.156:1521/fgosora')
-            # 使用cursor()方法获取操作游标
-            cursor = db.cursor()
-            # sql = "SELECT * FROM names where name='%res'"
-            # 使用execute方法执行SQL语句
-            cursor.execute("SELECT * FROM TD_VIP_TEST where VIPU_VIP_NAME='%s'" % (res))
 
-            # 使用 fetchone() 方法获取一条数据
-            dat = cursor.fetchone()
-            print(dat)
-            # 关闭数据库连接
-            db.close()
-            return dat
+            return res
         if args.save:
             video_writer.write(frame)
 
@@ -144,31 +131,58 @@ def detectFace():
     # Ensure an image was properly uploaded to our endpoint.
     # 判断是否是 POST 请求,记录请求使用的HTTP方法
     if flask.request.method == 'GET':
-        dat=predict()
-        data['predict'] = list()
+        res=predict()
 
-        for row in dat:
-            result = {}
-            result['VIPU_OP_TM'] =dat[11]
-            result['VIPU_TELE'] = dat[10]
-            result['VIPU_LINE'] = dat[9]
-            result['VIPU_GRADE'] = dat[8]
-            result['VIPU_VIP_TITLE'] = dat[7]
-            result['VIPU_PNR'] = dat[6]
-            result['VIPU_DATE'] = dat[5]
-            result['VIPU_TYPE_ARR_DEP'] = dat[4]
-            result['VIPU_FLT_NO'] = dat[3]
-            result['VIPU_ALCD_TW'] = dat[2]
-            result['VIPU_ID'] = dat[1]
-            result['VIPU_VIP_NAME'] = dat[0]
+        if res == "unknown":
+            data['predict'] = list()
 
-        data['predict'].append(result)
+            # Loop over the results and add them to the list of returned predictions
+            # label_name = idx2label[label]
+            # 将结果存到 data 中
+            # r = {res}
+            data['predict'].append(res)
 
-        # Indicate that the request was a success.
-        data["success"] = True
-        print(data)
-        # Return the data dictionary as a JSON response.
-        # 返回成 json 的文件
+            # Indicate that the request was a success.
+            data["success"] = True
+        else:
+            """打开数据库"""
+            #
+            db = cx_Oracle.connect('fgos', 'bjrdfgos', '172.20.19.156:1521/fgosora')
+            # 使用cursor()方法获取操作游标
+            cursor = db.cursor()
+            # sql = "SELECT * FROM names where name='%res'"
+            # 使用execute方法执行SQL语句
+            cursor.execute("SELECT * FROM TD_VIP_TEST where VIPU_VIP_NAME='%s'" % (res))
+
+            # 使用 fetchone() 方法获取一条数据
+            dat = cursor.fetchone()
+            print(dat)
+            # 关闭数据库连接
+            db.close()
+            data['predict'] = list()
+
+            for row in dat:
+                result = {}
+                result['VIPU_OP_TM'] =dat[11]
+                result['VIPU_TELE'] = dat[10]
+                result['VIPU_LINE'] = dat[9]
+                result['VIPU_GRADE'] = dat[8]
+                result['VIPU_VIP_TITLE'] = dat[7]
+                result['VIPU_PNR'] = dat[6]
+                result['VIPU_DATE'] = dat[5]
+                result['VIPU_TYPE_ARR_DEP'] = dat[4]
+                result['VIPU_FLT_NO'] = dat[3]
+                result['VIPU_ALCD_TW'] = dat[2]
+                result['VIPU_ID'] = dat[1]
+                result['VIPU_VIP_NAME'] = dat[0]
+
+            data['predict'].append(result)
+
+            # Indicate that the request was a success.
+            data["success"] = True
+            # print(data)
+            # Return the data dictionary as a JSON response.
+            # 返回成 json 的文件
     return flask.jsonify(data)
 
 
