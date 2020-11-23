@@ -52,7 +52,7 @@ pymysql
 ##预训练模型下载  
 链接：https://pan.baidu.com/s/1rCtHNJsZWaAF_H0UspdKWQ 
 提取码：8csj 
-复制这段内容后打开百度网盘手机App，操作更方便哦
+
 下载成功后放入Face_Recognition-new\Face_Recognition\work_space\save目录下，程序即可正常运行
 
 
@@ -85,6 +85,11 @@ pymysql
 
 就可以启动人脸识别项目的Demo了，这个模块会启动电脑的摄像头来实时地进行人脸识别。
 - - -
+  Front_and_Display_cors.py
+  
+连接fgos测试库，通过TD_VIP_TEST数据表获取所识别人脸信息
+
+通过post请求，与前端进行交互，接收前端发送的二进制图片信息，转化为图片后进行人脸识别，以json格式将信息返回到前端
   ```
 
 ##5、html配置信息
@@ -108,7 +113,10 @@ pymysql
  
 ##6、项目API服务
   ```
- Front_and_Display.py 服务接口为http://IP:5000（其中，IP为自己的IP地址），通过调用摄像头进行人脸识别，返回oracle测试库中对应人脸信息
- Front_and_Display_image.py 通过在html中表单上传的方式，上传.jpg格式图片进行人脸识别，返回oracle测试库中对应人脸信息
+ Front_and_Display.py 服务接口为http://IP:5000（其中，IP为自己的IP地址），通过调用摄像头进行人脸识别，返回mysql测试库中对应人脸信息
+ 
+ Front_and_Display_image.py 通过在html中表单上传的方式，上传.jpg格式图片进行人脸识别，返回mysql测试库中对应人脸信息
+ 
+ Front_and_Display_cors.py 实现前端与后端交互
  ```
 
