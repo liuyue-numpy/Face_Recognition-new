@@ -14,10 +14,10 @@
 ```
 ###take_pic.py:使用摄像头保存图片
 ###mtcnn.py:mtcnn 三级联网络结构
-###model.py: 定义卷积，优化器，损失函数等
+###model.py: 定义卷积，优化器，损失函数等网络构建
 ###demoForShow.py:人脸识别展示Demo模块，通过将模型的调用暴露成web服务，实现在浏览器端进行展示
 ###face_verify.py:调用摄像头来进行实时的人脸数据识别
-###learner.py:定义训练、测试方法等
+###learner.py:网络使用
 ###Front_and_Display.py 连接oracle测试库，通过调用摄像头进行人脸识别，在HTTP中通过get请求返回对应人脸信息
 ###Front_and_Display_image.py 连接mysql测试库，通过在html中表单上传的方式，上传.jpg格式图片进行人脸识别，在HTTP中通过post请求返回对应人脸信息
 ###testMysql.py 连接mysql数据库，通过在html中表单上传的方式，上传.jpg格式图片进行人脸识别，在HTTP中通过post请求返回对应人脸信息
