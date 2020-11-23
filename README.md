@@ -19,8 +19,8 @@
 ###face_verify.py:调用摄像头来进行实时的人脸数据识别
 ###learner.py:定义训练、测试方法等
 ###Front_and_Display.py 连接oracle测试库，通过调用摄像头进行人脸识别，在HTTP中通过get请求返回对应人脸信息
-###Front_and_Display_image.py 连接oracle测试库，通过在html中表单上传的方式，上传.jpg格式图片进行人脸识别，在HTTp中通过post请求返回对应人脸信息
-###testMysql.py 连接mysql数据库，通过在html中表单上传的方式，上传.jpg格式图片进行人脸识别，在HTTp中通过post请求返回对应人脸信息
+###Front_and_Display_image.py 连接mysql测试库，通过在html中表单上传的方式，上传.jpg格式图片进行人脸识别，在HTTP中通过post请求返回对应人脸信息
+###testMysql.py 连接mysql数据库，通过在html中表单上传的方式，上传.jpg格式图片进行人脸识别，在HTTP中通过post请求返回对应人脸信息
 ```
 
 
@@ -94,6 +94,10 @@ pymysql
 
 ##5、html配置信息
  ```
+Front_and_Display_image.py
+
+在本地通过表单上传的方式进行人脸识别
+
 新建一个文本文档，将以下配置信息放入即可
 <!DOCTYPE html>
 <html lang="en">
