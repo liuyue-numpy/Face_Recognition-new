@@ -198,3 +198,4 @@ if __name__ == "__main__":
     print('faceRegnitionDemo')
     #运行前需要将  0.0.0.0  替换为自己的IP地址
     app.run(host='0.0.0.0',port=80)
+
